@@ -41,7 +41,7 @@ function gotMessage(message, sender, sendResponse) {
                         ch.style.opacity = 0
                     }, time)
 
-                    time += parseInt(message.txt)
+                    time += 1000 / (parseInt(message.txt) / 60 * 4.5)
                 })
 
             }
