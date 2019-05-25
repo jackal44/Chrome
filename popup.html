@@ -67,27 +67,26 @@
         }
 
         #popup_container {
-            width: 180px;
-            height: 100px;
+            width: 130px;
+            height: 70px;
         }
     </style>
-    <div id="popup_container">
-        <div class="box">
-            <center>
+    <center>
+        <div id="popup_container">
+            <div class="box">
                 <div id="value"></div>
-            </center>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="1500" id="slider" class="slider" title="adjust speed">
+            </div>
+            <br />
+            <div id="button_container">
+                <button class="btn" id="cancel" title="cancel"><i class="fa fa-close"></i></button>
+                <button class="btn" id="play" title="play: &#010spacebar"><i class='far fa-play-circle'></i></button>
+                <button class="btn" id="pause" title="pause: &#010spacebar"><i class='far fa-pause-circle'></i></button>
+            </div>
         </div>
-        <div class="slidecontainer">
-            <input type="range" min="0" max="1500" id="slider" class="slider" title="adjust speed">
-        </div>
-
-        <br />
-        <div id="button_container">
-            <button class="btn" title="cancel"><i class="fa fa-close"></i></button>
-            <button class="btn" id="play" title="play"><i class='far fa-play-circle'></i></button>
-            <button class="btn" id="pause" title="pause"><i class='far fa-pause-circle'></i></button>
-        </div>
-    </div>
+    </center>
 </body>
 
 

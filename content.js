@@ -14,6 +14,7 @@ function gotMessage(message, sender, sendResponse) {
     console.log(message);
 
     if (message == "play" && k == true) {
+        k = false
         if (window.getSelection) {
             sel = window.getSelection();
             if (sel.getRangeAt && sel.rangeCount) {
@@ -27,7 +28,6 @@ function gotMessage(message, sender, sendResponse) {
                 var frag = document.createDocumentFragment()
                 frag.appendChild(el);
                 range.insertNode(frag);
-                k = false
                 let offset = 0
 
                 let timer = setInterval(function () {
@@ -36,19 +36,22 @@ function gotMessage(message, sender, sendResponse) {
                         if ($('.char').length > offset) {
                             $('.char')[offset].style.opacity = 0
                             offset++
-                        }
-                        if ($('.char').length == offset) {
+                        } else if ($('.char').length == offset) {
                             k = true
+                            clearInterval(timer)
+                            for (i = 0; i < $('.char').length; i++) {
+                                $('.char')[i].style.opacity = 1
+                            }
+
                         }
                     }
                     chrome.runtime.onMessage.addListener(gotMessage)
                     function gotMessage(message, sender, sendResponse) {
                         if (message == 'pause') {
                             isPause = true
-                        } else if (message = 'play') {
+                        } else if (message == 'play') {
                             isPause = false
                         }
-
                     }
                 }, 1000 / (1000 / 60 * 4.5))
             }
