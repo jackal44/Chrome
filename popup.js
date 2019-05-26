@@ -1,3 +1,4 @@
+
 //slider
 var slider = document.getElementById('slider')
 var val = document.getElementById('value')
@@ -8,29 +9,20 @@ slider.oninput = function () {
 
 let play = document.getElementById('play')
 let pause = document.getElementById('pause')
-let cancel = document.getElementById('cancel')
+
 
 play.addEventListener("click", disappear)
 pause.addEventListener("click", stop)
-cancel.addEventListener("click", refresh)
 
 let params = {
     active: true,
     currentWindow: true
 }
 
-function refresh() {
-    chrome.tabs.query(params, gotTab);
-    function gotTab(tabs) {
-        let msg = 'refresh'
-        chrome.tabs.sendMessage(tabs[0].id, msg)
-    }
-}
-
 function disappear() {
     chrome.tabs.query(params, gotTab);
     function gotTab(tabs) {
-        let msg = 'play'
+        let msg = slider.value
         chrome.tabs.sendMessage(tabs[0].id, msg)
     }
 }
@@ -38,7 +30,7 @@ function disappear() {
 function stop() {
     chrome.tabs.query(params, gotTab);
     function gotTab(tabs) {
-        let msg = "pause"
+        let msg = 0
         chrome.tabs.sendMessage(tabs[0].id, msg)
     }
 }
