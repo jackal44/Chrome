@@ -1,3 +1,4 @@
+//slider
 var slider = document.getElementById('slider')
 var val = document.getElementById('value')
 val.innerHTML = slider.value
@@ -12,24 +13,35 @@ let params = {
     active: true,
     currentWindow: true
 }
+play.addEventListener("click", disappear)
 
-play.onclick = function () {
+function disappear() {
     chrome.tabs.query(params, gotTab);
     function gotTab(tabs) {
-        let msg = {
-            txt: value.innerText
-        }
+        let msg = 'play'
         chrome.tabs.sendMessage(tabs[0].id, msg)
     }
 }
 
-pause.onclick = function () {
+pause.addEventListener("click", stop)
+function stop() {
     chrome.tabs.query(params, gotTab);
     function gotTab(tabs) {
-        let msg = {
-            txt: "pause"
-        }
+        let msg = "pause"
         chrome.tabs.sendMessage(tabs[0].id, msg)
+    }
+}
+
+let clickCount = 0;
+document.addEventListener("keyup", shortcut, false)
+function shortcut(e) {
+    if (e.keyCode == 32) {
+        if (clickCount % 2 == 0) {
+            disappear()
+        } else {
+            stop()
+        }
+        clickCount++
     }
 }
 
