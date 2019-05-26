@@ -10,7 +10,7 @@ slider.oninput = function () {
 let play = document.getElementById('play')
 let pause = document.getElementById('pause')
 
-
+slider.addEventListener("click", disappear)
 play.addEventListener("click", disappear)
 pause.addEventListener("click", stop)
 
