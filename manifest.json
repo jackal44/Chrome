@@ -22,8 +22,8 @@
         ]
     },
     "browser_action": {
-        "default_icon": "fl.png",
+        "default_icon": "icon5.png",
         "default_popup": "popup.html",
-        "default_title": "A popup will come here."
+        "default_title": "TextWorm"
     }
 }
