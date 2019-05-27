@@ -67,30 +67,27 @@
         }
 
         #popup_container {
-            width: 150px;
-            height: 90px;
+            width: 130px;
+            height: 70px;
         }
     </style>
-
     <center>
-    <div id="popup_container">
-        <!-- <div class="box"> -->
-                <p id="value"> wpm</p>
-            <!-- </div> -->
+        <div id="popup_container">
+            <div class="box">
+                <div id="value">WPM: </div>
+            </div>
             <div class="slidecontainer">
                 <input type="range" min="0" max="1500" id="slider" class="slider" title="adjust speed">
             </div>
-            
             <br />
             <div id="button_container">
-                <button class="btn" title="cancel"><i class="fa fa-close"></i></button>
-                <button class="btn" id="play" title="play"><i class='far fa-play-circle'></i></button>
-                <button class="btn" id="pause" title="pause"><i class='far fa-pause-circle'></i></button>
+                <button class="btn" id="cancel" title="cancel"><i class="fa fa-close"></i></button>
+                <button class="btn" id="play" title="play: &#010spacebar"><i class='far fa-play-circle'></i></button>
+                <button class="btn" id="pause" title="pause: &#010spacebar"><i class='far fa-pause-circle'></i></button>
             </div>
         </div>
     </center>
-    </body>
-
+</body>
 
 <script src="popup.js"></script>
 <script src="jquery.js"></script>

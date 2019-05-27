@@ -1,7 +1,10 @@
+
 //slider
 var slider = document.getElementById('slider')
 var val = document.getElementById('value')
-val.innerHTML = slider.value
+value = document.createElement('span')
+value.innerHTML = slider.value
+val.appendChild(value)
 slider.oninput = function () {
     val.innerHTML = this.value
 }
@@ -9,39 +12,42 @@ slider.oninput = function () {
 let play = document.getElementById('play')
 let pause = document.getElementById('pause')
 
+slider.addEventListener("click", disappear)
+play.addEventListener("click", disappear)
+pause.addEventListener("click", stop)
+
 let params = {
     active: true,
     currentWindow: true
 }
-play.addEventListener("click", disappear)
 
 function disappear() {
     chrome.tabs.query(params, gotTab);
     function gotTab(tabs) {
-        let msg = 'play'
+        let msg = slider.value
         chrome.tabs.sendMessage(tabs[0].id, msg)
     }
 }
 
-pause.addEventListener("click", stop)
 function stop() {
     chrome.tabs.query(params, gotTab);
     function gotTab(tabs) {
-        let msg = "pause"
+        let msg = 0
         chrome.tabs.sendMessage(tabs[0].id, msg)
     }
 }
 
-let clickCount = 0;
+let state = true
 document.addEventListener("keyup", shortcut, false)
 function shortcut(e) {
     if (e.keyCode == 32) {
-        if (clickCount % 2 == 0) {
+        if (state) {
             disappear()
+            state = !state
         } else {
             stop()
+            state = !state
         }
-        clickCount++
     }
 }
 

@@ -16,6 +16,13 @@
     "permissions": [
         "storage"
     ],
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "windows": "Ctrl+Shift+Y"
+            }
+        }
+    },
     "background": {
         "scripts": [
             "background.js"
@@ -24,6 +31,6 @@
     "browser_action": {
         "default_icon": "icon5.png",
         "default_popup": "popup.html",
-        "default_title": "TextWorm"
+        "default_title": "Ctrl+Shift+Y"
     }
 }

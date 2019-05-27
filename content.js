@@ -13,7 +13,8 @@ chrome.runtime.onMessage.addListener(gotMessage);
 function gotMessage(message, sender, sendResponse) {
     console.log(message);
 
-    if (message == "play" && k == true) {
+    if (message != 0 && k == true) {
+        k = false
         if (window.getSelection) {
             sel = window.getSelection();
             if (sel.getRangeAt && sel.rangeCount) {
@@ -27,31 +28,43 @@ function gotMessage(message, sender, sendResponse) {
                 var frag = document.createDocumentFragment()
                 frag.appendChild(el);
                 range.insertNode(frag);
-                k = false
                 let offset = 0
-
-                let timer = setInterval(function () {
-
-                    if (!isPause) {
-                        if ($('.char').length > offset) {
-                            $('.char')[offset].style.opacity = 0
-                            offset++
+                function loop() {
+                    let timer = setInterval(function () {
+                        if (!isPause) {
+                            if ($('.char').length > offset) {
+                                $('.char')[offset].style.opacity = 0
+                                offset++
+                                clearInterval(timer)
+                                loop()
+                            } else if ($('.char').length == offset) {
+                                k = true
+                                clearInterval(timer)
+                                for (i = 0; i < $('.char').length; i++) {
+                                    $('.char')[i].style.opacity = 1
+                                }
+                            }
                         }
-                        if ($('.char').length == offset) {
-                            k = true
-                        }
-                    }
-                    chrome.runtime.onMessage.addListener(gotMessage)
-                    function gotMessage(message, sender, sendResponse) {
-                        if (message == 'pause') {
-                            isPause = true
-                        } else if (message = 'play') {
-                            isPause = false
+                        chrome.runtime.onMessage.addListener(gotMessage)
+                        function gotMessage(message, sender, sendResponse) {
+                            if (message == 0) {
+                                isPause = true
+                            } else if (message != 0) {
+                                x = (1000 / (message / 60 * 4.5))
+                                isPause = false
+                            }
                         }
 
-                    }
-                }, 1000 / (1000 / 60 * 4.5))
+                    }, x
+                    )
+
+                }
+                var x = (1000 / (message / 60 * 4.5))
+                loop()
             }
         }
     }
 }
+
+// return (1000 / (750 / 60 * 4.5))
+
