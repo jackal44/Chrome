@@ -47,7 +47,6 @@ function gotMessage(message, sender, sendResponse) {
                         }
                         chrome.runtime.onMessage.addListener(gotMessage)
                         function gotMessage(message, sender, sendResponse) {
-                            console.log("inner:"), message
                             if (message == 0) {
                                 isPause = true
                             } else if (message != 0) {

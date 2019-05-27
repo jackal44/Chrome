@@ -2,7 +2,9 @@
 //slider
 var slider = document.getElementById('slider')
 var val = document.getElementById('value')
-val.innerHTML = slider.value
+value = document.createElement('span')
+value.innerHTML = slider.value
+val.appendChild(value)
 slider.oninput = function () {
     val.innerHTML = this.value
 }
