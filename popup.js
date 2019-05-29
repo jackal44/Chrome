@@ -3,11 +3,21 @@
 var slider = document.getElementById('slider')
 var val = document.getElementById('value')
 value = document.createElement('span')
+value.setAttribute("id", "sval")
 value.innerHTML = slider.value
 val.appendChild(value)
+let fff = document.getElementById('sval')
 slider.oninput = function () {
-    val.innerHTML = this.value
+    fff.innerHTML = this.value
+    chrome.storage.sync.set({key:slider.value})
 }
+chrome.storage.sync.get('key', data=> {
+    console.log(data.key)
+    let sliderPosition = document.querySelector("input")
+    sliderPosition.setAttribute('value', data.key)
+    let sliderValue = document.getElementById("sval")
+    sliderValue.innerHTML = data.key
+})
 
 let play = document.getElementById('play')
 let pause = document.getElementById('pause')
