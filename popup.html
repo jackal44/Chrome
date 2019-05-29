@@ -50,6 +50,10 @@
             background: rgb(39, 233, 217);
             cursor: pointer;
         }
+        
+        #tutorial {
+            float: right ;
+        }
 
         .btn {
             background-color: rgb(39, 233, 217);
@@ -67,26 +71,30 @@
         }
 
         #popup_container {
-            width: 130px;
-            height: 70px;
+            width: 150px;
+            height: 80px;
         }
     </style>
-    <center>
         <div id="popup_container">
+            <div id="tutorial">
+                <i class='far fa-question-circle' title="Tips"></i>
+            </div>
+            <center>
             <div class="box">
                 <div id="value">WPM: </div>
             </div>
             <div class="slidecontainer">
-                <input type="range" min="0" max="1500" id="slider" class="slider" title="adjust speed">
+                <input type="range" min="0" max="1500" id="slider" class="slider" title="Adjust your speed here.">
             </div>
             <br />
             <div id="button_container">
-                <button class="btn" id="cancel" title="cancel"><i class="fa fa-close"></i></button>
-                <button class="btn" id="play" title="play: &#010spacebar"><i class='far fa-play-circle'></i></button>
-                <button class="btn" id="pause" title="pause: &#010spacebar"><i class='far fa-pause-circle'></i></button>
+                <!-- <button class="btn" id="cancel" title="cancel"><i class="fa fa-close"></i></button> -->
+                <button class="btn" id="play" title="QnA"><i class='fas fa-shapes'></i></button>
+                <button class="btn" id="play" title="Play (shortcut key: spacebar)"><i class='far fa-play-circle'></i></button>
+                <button class="btn" id="pause" title="Pause (shortcut key: spacebar)"><i class='far fa-pause-circle'></i></button>
             </div>
+        </center>
         </div>
-    </center>
 </body>
 
 <script src="popup.js"></script>

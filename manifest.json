@@ -1,7 +1,14 @@
 {
     "manifest_version": 2,
-    "name": "Coding Train Pop Up",
+    "name": "Text Worm",
     "version": "0.1",
+    "description": "An app which train you read faster. The real speed reading tool. ",
+    "icons": {
+      "128": "icon_16.png",
+      "128": "icon_32.png",
+      "128": "icon_48.png",
+      "128": "icon_128.png"
+    },
     "content_scripts": [
         {
             "matches": [
@@ -31,6 +38,6 @@
     "browser_action": {
         "default_icon": "icon5.png",
         "default_popup": "popup.html",
-        "default_title": "Ctrl+Shift+Y"
+        "default_title": "Text Worm (Shortcut key: Ctrl+Shift+Y)"
     }
 }
