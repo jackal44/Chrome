@@ -19,27 +19,11 @@ function gotMessage(message, sender, sendResponse) {
     console.log(message);
     if (message == "dark") {
         if (dark_status) {
-            // $("body").css("background-color", "black")
-            // $("body").css("color", "yellow")
-            // $("span").css("background-color", "black")
-            // $("span").css("color", "yellow")
-            // $("div").css("background-color", "black")
-            // $("div").css("color", "yellow")
-            // $("nav").css("background-color", "black")
-            // $("nav").css("color", "yellow")
             $("*").css("background-color", "black")
             $("*").css("color", "green")
             dark_status = !dark_status
         }
         else {
-            // $("body").css("background-color", "white")
-            // $("body").css("color", "black")
-            // $("span").css("background-color", "white")
-            // $("span").css("color", "black")
-            // $("div").css("background-color", "white")
-            // $("div").css("color", "black")
-            // $("nav").css("background-color", "white")
-            // $("nav").css("color", "black")
             $("*").css("background-color", "white")
             $("*").css("color", "black")
 
