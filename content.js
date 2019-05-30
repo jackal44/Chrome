@@ -12,11 +12,41 @@ function spanText(text) {
 
 let isPause = false
 
+dark_status = true
 k = true
 chrome.runtime.onMessage.addListener(gotMessage);
 function gotMessage(message, sender, sendResponse) {
     console.log(message);
-    if (message != 0 && message != 'question' && message != 'answer' && k == true) {
+    if (message == "dark") {
+        if (dark_status) {
+            // $("body").css("background-color", "black")
+            // $("body").css("color", "yellow")
+            // $("span").css("background-color", "black")
+            // $("span").css("color", "yellow")
+            // $("div").css("background-color", "black")
+            // $("div").css("color", "yellow")
+            // $("nav").css("background-color", "black")
+            // $("nav").css("color", "yellow")
+            $("*").css("background-color", "black")
+            $("*").css("color", "green")
+            dark_status = !dark_status
+        }
+        else {
+            // $("body").css("background-color", "white")
+            // $("body").css("color", "black")
+            // $("span").css("background-color", "white")
+            // $("span").css("color", "black")
+            // $("div").css("background-color", "white")
+            // $("div").css("color", "black")
+            // $("nav").css("background-color", "white")
+            // $("nav").css("color", "black")
+            $("*").css("background-color", "white")
+            $("*").css("color", "black")
+
+            dark_status = !dark_status
+        }
+    }
+    if (message != 0 && message != 'question' && message != 'answer' && message != 'dark' && k == true) {
         k = false
         if (window.getSelection) {
             let sel = window.getSelection();
@@ -80,25 +110,18 @@ function gotMessage(message, sender, sendResponse) {
                         console.log(response.data)
                         previous = sel.toString()
                         input = sel.toString()
-                        // let randomize = []
-                        // // var answers = response.data
-                        // for (let i = 0; i < 6; i++) {
-                        //     randomize = randomize.push(Math.floor(Math.random() * 6))
-                        // }
                         array = response.data
-                        // let shuffled_array = []
-                        // if (array.length > 8) {
-                        //     for (e of randomize) {
-                        //         shuffled_array = shuffled_array.push(e)
-                        //     }
-                        // }
-                        // else if (array.lenth <= 7) {
-                        //     shuffled_array = array
-                        // }
 
-                        console.log()
+                        let easy_array = []
                         for (e of array) {
-                            input = input.replace(e, '__________')
+                            if (array.indexOf(e) % 7 == 0) {
+                                easy_array.push(e)
+                            }
+                        }
+
+                        console.log(easy_array)
+                        for (e of easy_array) {
+                            input = input.replace(e, ' ' + e[0] + ' _'.repeat(e.length - 2) + ' ' + e[e.length - 1] + ' ')
                         }
                         range = window.getSelection().getRangeAt(0);
                         console.log(input)
@@ -113,7 +136,7 @@ function gotMessage(message, sender, sendResponse) {
                         chrome.runtime.onMessage.addListener(gotMessage)
                         function gotMessage(message, sender, sendResponse) {
                             if (message == 'answer') {
-                                for (e of array) {
+                                for (e of easy_array) {
                                     previous = previous.replace(new RegExp('(' + e + ')'), '<span class="word">$1</span>')
                                 }
                                 range = window.getSelection().getRangeAt(0);

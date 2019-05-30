@@ -11,10 +11,14 @@ let play = document.getElementById('play')
 let pause = document.getElementById('pause')
 let cancel = document.getElementById('cancel')
 
+let dark_mode = document.createElement("button")
+dark_mode.innerHTML = "dark mode"
+document.body.append(dark_mode)
 let answer = document.createElement("button")
 answer.innerHTML = "answer"
 document.body.append(answer)
 
+dark_mode.addEventListener("click", dark)
 answer.addEventListener("click", give_answer)
 cancel.addEventListener("click", api)
 slider.addEventListener("click", disappear)
@@ -24,6 +28,14 @@ pause.addEventListener("click", stop)
 let params = {
     active: true,
     currentWindow: true
+}
+
+function dark() {
+    chrome.tabs.query(params, gotTab);
+    function gotTab(tabs) {
+        let msg = 'dark'
+        chrome.tabs.sendMessage(tabs[0].id, msg)
+    }
 }
 
 function give_answer() {
