@@ -36,7 +36,7 @@
         ]
     },
     "browser_action": {
-        "default_icon": "icon5.png",
+        "default_icon": "icon7.png",
         "default_popup": "popup.html",
         "default_title": "Text Worm (Shortcut key: Ctrl+Shift+Y)"
     }
