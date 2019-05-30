@@ -1,4 +1,5 @@
 
+
 console.log("Chrome Extension go")
 url_entity = "http://localhost:5000/entity"
 
@@ -15,7 +16,7 @@ k = true
 chrome.runtime.onMessage.addListener(gotMessage);
 function gotMessage(message, sender, sendResponse) {
     console.log(message);
-    if (message != 0 && message != 'question' && k == true) {
+    if (message != 0 && message != 'question' && message != 'answer' && k == true) {
         k = false
         if (window.getSelection) {
             let sel = window.getSelection();
@@ -77,11 +78,27 @@ function gotMessage(message, sender, sendResponse) {
                 })
                     .then(function (response) {
                         console.log(response.data)
+                        previous = sel.toString()
                         input = sel.toString()
-                        // var answers = response.data
+                        // let randomize = []
+                        // // var answers = response.data
+                        // for (let i = 0; i < 6; i++) {
+                        //     randomize = randomize.push(Math.floor(Math.random() * 6))
+                        // }
                         array = response.data
+                        // let shuffled_array = []
+                        // if (array.length > 8) {
+                        //     for (e of randomize) {
+                        //         shuffled_array = shuffled_array.push(e)
+                        //     }
+                        // }
+                        // else if (array.lenth <= 7) {
+                        //     shuffled_array = array
+                        // }
+
+                        console.log()
                         for (e of array) {
-                            input = input.replace(e, '_______')
+                            input = input.replace(e, '__________')
                         }
                         range = window.getSelection().getRangeAt(0);
                         console.log(input)
@@ -92,6 +109,26 @@ function gotMessage(message, sender, sendResponse) {
                         let frag = document.createDocumentFragment()
                         frag.appendChild(el);
                         range.insertNode(frag);
+
+                        chrome.runtime.onMessage.addListener(gotMessage)
+                        function gotMessage(message, sender, sendResponse) {
+                            if (message == 'answer') {
+                                for (e of array) {
+                                    previous = previous.replace(new RegExp('(' + e + ')'), '<span class="word">$1</span>')
+                                }
+                                range = window.getSelection().getRangeAt(0);
+                                let html1 = previous
+                                range.deleteContents();
+                                let el1 = document.createElement("span");
+                                el1.innerHTML = html1;
+                                let frag1 = document.createDocumentFragment()
+                                frag1.appendChild(el1);
+                                range.insertNode(frag1);
+                                $('.word').css('background-color', 'yellow')
+
+                            }
+                        }
+
                     })
                     .catch(function (error) {
                         console.log(error)
@@ -99,9 +136,6 @@ function gotMessage(message, sender, sendResponse) {
 
             }
         }
-    }
-    else if (message == 'answers') {
-        console.log(answers)
     }
 }
 

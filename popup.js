@@ -11,6 +11,11 @@ let play = document.getElementById('play')
 let pause = document.getElementById('pause')
 let cancel = document.getElementById('cancel')
 
+let answer = document.createElement("button")
+answer.innerHTML = "answer"
+document.body.append(answer)
+
+answer.addEventListener("click", give_answer)
 cancel.addEventListener("click", api)
 slider.addEventListener("click", disappear)
 play.addEventListener("click", disappear)
@@ -19,6 +24,14 @@ pause.addEventListener("click", stop)
 let params = {
     active: true,
     currentWindow: true
+}
+
+function give_answer() {
+    chrome.tabs.query(params, gotTab);
+    function gotTab(tabs) {
+        let msg = 'answer'
+        chrome.tabs.sendMessage(tabs[0].id, msg)
+    }
 }
 
 function api() {
