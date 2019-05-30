@@ -2,16 +2,16 @@
 //slider
 var slider = document.getElementById('slider')
 var val = document.getElementById('value')
-value = document.createElement('span')
-value.innerHTML = slider.value
-val.appendChild(value)
+val.innerHTML = slider.value
 slider.oninput = function () {
     val.innerHTML = this.value
 }
 
 let play = document.getElementById('play')
 let pause = document.getElementById('pause')
+let cancel = document.getElementById('cancel')
 
+cancel.addEventListener("click", api)
 slider.addEventListener("click", disappear)
 play.addEventListener("click", disappear)
 pause.addEventListener("click", stop)
@@ -21,6 +21,13 @@ let params = {
     currentWindow: true
 }
 
+function api() {
+    chrome.tabs.query(params, gotTab);
+    function gotTab(tabs) {
+        let msg = 'question'
+        chrome.tabs.sendMessage(tabs[0].id, msg)
+    }
+}
 function disappear() {
     chrome.tabs.query(params, gotTab);
     function gotTab(tabs) {

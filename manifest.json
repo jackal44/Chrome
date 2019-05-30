@@ -8,12 +8,14 @@
                 "<all_urls>"
             ],
             "js": [
+                "axios.js",
                 "jquery.js",
                 "content.js"
             ]
         }
     ],
     "permissions": [
+        "<all_urls>",
         "storage"
     ],
     "commands": {
