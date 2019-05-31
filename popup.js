@@ -24,13 +24,8 @@ chrome.storage.sync.get('key', data => {
 let play = document.getElementById('play')
 let pause = document.getElementById('pause')
 let qna = document.getElementById('qna')
-
-let dark_mode = document.createElement("button")
-dark_mode.innerHTML = "dark mode"
-document.body.append(dark_mode)
-let answer = document.createElement("button")
-answer.innerHTML = "answer"
-document.body.append(answer)
+let dark_mode = document.getElementById('darkmode')
+let answer = document.getElementById('answer')
 
 dark_mode.addEventListener("click", dark)
 answer.addEventListener("click", give_answer)
@@ -117,6 +112,18 @@ function shortcut(e) {
             stop()
             state = !state
         }
+    }
+
+    else if (e.keyCode == 68) {
+        dark()
+    }
+
+    else if (e.keyCode == 81) {
+        api()
+    }
+
+    else if (e.keyCode == 65) {
+        give_answer()
     }
 }
 

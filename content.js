@@ -26,7 +26,7 @@ function gotMessage(message, sender, sendResponse) {
         else {
             $("*").css("background-color", "white")
             $("*").css("color", "black")
-
+            $("a").css("color", "blue")
             dark_status = !dark_status
         }
     }
