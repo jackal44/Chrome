@@ -23,7 +23,7 @@ chrome.storage.sync.get('key', data => {
 
 let play = document.getElementById('play')
 let pause = document.getElementById('pause')
-let cancel = document.getElementById('cancel')
+let qna = document.getElementById('qna')
 
 let dark_mode = document.createElement("button")
 dark_mode.innerHTML = "dark mode"
@@ -34,7 +34,7 @@ document.body.append(answer)
 
 dark_mode.addEventListener("click", dark)
 answer.addEventListener("click", give_answer)
-cancel.addEventListener("click", api)
+qna.addEventListener("click", api)
 slider.addEventListener("click", disappear)
 play.addEventListener("click", disappear)
 pause.addEventListener("click", stop)
@@ -83,22 +83,7 @@ function stop() {
     }
 }
 
-
-
 let state = true
-document.addEventListener("keyup", shortcut, false)
-function shortcut(e) {
-    if (e.keyCode == 32) {
-        if (state) {
-            disappear()
-            state = !state
-        } else {
-            stop()
-            state = !state
-        }
-    }
-}
-
 document.addEventListener("keydown", shortcut, false)
 function shortcut(e) {
     if (e.keyCode == 37) {
@@ -121,6 +106,16 @@ function shortcut(e) {
         function gotTab(tabs) {
             let msg = slider.value
             chrome.tabs.sendMessage(tabs[0].id, msg)
+        }
+    }
+
+    else if (e.keyCode == 32) {
+        if (state) {
+            disappear()
+            state = !state
+        } else {
+            stop()
+            state = !state
         }
     }
 }
