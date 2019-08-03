@@ -66,14 +66,14 @@ function gotMessage(message, sender, sendResponse) {
                             if (message == 0) {
                                 isPause = true
                             } else if (message != 0 && message != 'question') {
-                                x = (1000 / (message / 60 * 4.5))
+                                x = parseFloat((1000 / (message / 60 * 4.5)))
                                 isPause = false
                             }
                         }
                     }, x
                     )
                 }
-                var x = (1000 / (message / 60 * 4.5))
+                var x = parseFloat((1000 / (message / 60 * 4.5)))
                 loop()
             }
         }
